@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <style>
+
+.center {
+  text-align: center;
+  font-size: 28px;
+  color: red;
+  margin-top: 50px;
+text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black; 
+}
+
+.center1 {
+  margin: auto;
+  margin-top: 70px;
+  width: 50%;
+  border: 2px solid red;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(57,66,75);
+}
+
+.center2 {
+  margin: auto;
+  width: 40%;
+  padding: 15px;
+  text-align: center;
+color: white;
+}
+
+.button {
+  background-color: #f44336; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.bg-image {
+
+  background-image: url('gas.jpg');
+  Background-size: 100%;
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.menu{
+    background-color: rgb(57, 66, 75);
+    width: 100%; 
+    height: 50px;
+    margin-left: 0%;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    width: 100%;
+    height: 50px;
+}
+
+
+</style>
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<body class="bg-image">
+
+    <div class="menu">
+        <table style="width: 100%; height: 100%; color: whitesmoke;">
+            <tr>
+                <td style="width:33%;text-align: center;">Fuel Quote Predictor</td>
+                <td style="width:33%; text-align: center;">Fuel History</td>
+                <td style="width:33%; text-align: center;">Profile</td>
+            </tr>
+        </table>
+    </div>
+
+<br><br>
+<div class="center" style="font-size: 32px;">Welcome Admin</div>
+
+
+<div class="center1" style="border-radius: 25px">
+
+    
+    <br><br>
+    <span class="center2" style="font-size:22px">Seasonal Rate Fluctuation&nbsp &nbsp<input type="text" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+    <p></p><br>
+    <span class="center2" style="font-size:22px" >Base Price&nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp<input type="text" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+    <p></p>
+    <br>
+<span class="center2" style="font-size:22px" >Profit Margin &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp<input type="text" input="0" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+  <p></p>
+    <br>
+
+
+
+<br><br>
+    <input type="submit" value="Update" class="button">
+</div>
+</body>
+</html>
