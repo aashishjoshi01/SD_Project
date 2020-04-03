@@ -62,7 +62,27 @@
   background-repeat: no-repeat;
 }
 
-</style>
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: red;
+}
+
+
+    </style>
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body class="bg-image">
@@ -73,16 +93,28 @@
 
 <div class="center1" style="border-radius: 25px; background-color: solid white">
 
-    <h1><font color="red">Sign in</font></h1>
-    <br><br>
-    <span class="center2" style="font-size:22px"><font color="white">Username </font>&nbsp &nbsp<input type="text" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
-    <p></p><br>
-    <span class="center2" style="font-size:22px"><font color="white">Password &nbsp &nbsp<input type="password" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
-    <p></p>
-    <br><br>
-    <input type="submit" value="Login" class="button">
-    <br><br>
-    <span class="center2">New User ? <font style="text-decoration: underline;">Sign Up !</font></span>
+    <form method="post">
+        {% csrf_token %}
+        <h1><font color="red">Sign in</font></h1>
+        <br><br>
+        <span class="center2" style="font-size:22px"><font color="white">Username </font>&nbsp &nbsp<input autofocus
+                                                                                                           name="username"
+                                                                                                           required
+                                                                                                           type="text"
+                                                                                                           value="{{ uname }}"
+                                                                                                           style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+        <p></p><br>
+        <span class="center2" style="font-size:22px"><font color="white">Password &nbsp &nbsp<input required
+                                                                                                    name="password"
+                                                                                                    type="password"
+                                                                                                    style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+
+        <p style="color: red">{{ message }}</p>
+        <br>
+        <input type="submit" value="Login" class="button">
+        <br><br>
+        <span class="center2">New User ? <a href="signup">Sign Up</a></span>
+    </form>
 </div>
 
 

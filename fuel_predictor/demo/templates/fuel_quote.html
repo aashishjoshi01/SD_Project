@@ -1,13 +1,32 @@
 <html>
 <head>
 
-<style>
+    <style>
 .bg-image{
 
-    background-image: url('gas.jpg');
+    background-image: url('/static/demo/gas.jpg');
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: red;
 }
 
 .menu{
@@ -61,60 +80,70 @@ tr {
 }
 
 
-</style>
+    </style>
 
 </head>
 
 <body class="bg-image" style="background-size: 100% 100%; font-family: 'Comic Sans MS', cursive, sans-serif">
 
-    <div class="menu">
-        <table style="width: 100%; height: 100%; color: whitesmoke;">
+<div class="menu">
+    <table style="width: 100%; height: 100%; color: whitesmoke;">
         <tr>
-            <td style="width:33%;text-align: center;">Fuel Quote Predictor</td>
-            <td style="width:33%; text-align: center;">Fuel History</td>
-            <td style="width:33%; text-align: center;">Profile</td>
+            <td style="width:33%;text-align: center;"><a href="fuel_quote">Fuel Quote Predictor</a></td>
+            <td style="width:33%; text-align: center;"><a href="fuel_hist">Fuel History</a></td>
+            <td style="width:33%; text-align: center;"><a href="client_profile">Profile</a></td>
         </tr>
     </table>
-    </div>
+</div>
 
-    <div class="center1" style="border-radius: 25px; margin-top: 80px; margin-left: 20px; ">
-
-        <h1><font color="red">Your Profile Quote</h1>
+<div class="center1" style="border-radius: 25px; margin-top: 80px; margin-left: 20px; ">
+    <form method="post">
+        {% csrf_token %}
+        <h1><font color="red">Your Profile Quote</font></h1>
         <br><br>
-        <span class="center2" style="font-size:22px"><font color="white">Gallons Requested </font>&nbsp &nbsp<input type="text" style="border: 1px solid rgb(0, 0, 255, 0.4); height: 30px;"></span>
+        <span class="center2" style="font-size:22px"><font color="white">Gallons Requested </font>&nbsp &nbsp<input
+                value="{{ gallons }}" required name="gallons"
+                type="text" style="font-size:18px;border: 1px solid rgb(0, 0, 255, 0.4); height: 30px;"></span>
         <p></p><br>
-        <span class="center2" style="font-size:22px"><font color="white">Delivery Address &nbsp &nbsp &nbsp<textarea rows="4" cols="100">
-                    Sample Delivery Address
-                    </textarea></span>
+        <span class="center2" style="font-size:22px"><font color="white">Delivery Address &nbsp &nbsp &nbsp</font>
+            </span>
+        <textarea style="resize:none" required name="address" rows="3" cols="100">{{ address }}</textarea>
+        <!--        </span>-->
         <p></p>
         <br>
-        <span class="center2" style="font-size:22px"><font color="white">Delivery Date </font>&nbsp &nbsp<input type="date" style="border: 1px solid rgb(0, 0, 255, 0.4); width: 150px; height: 30px;"></span>
+        <span class="center2" style="font-size:22px"><font color="white">Delivery Date </font>&nbsp &nbsp<input required
+                                                                                                                value="{{ date }}"
+                                                                                                                name="date"
+                                                                                                                type="date"
+                                                                                                                style="border: 1px solid rgb(0, 0, 255, 0.4); width: 150px; height: 30px;"></span>
         <br><br>
+        <p style="color:red">{{ message }}</p>
         <input type="submit" value="Get Quote" class="button">
-    </div>
+    </form>
+</div>
 
-    <h1 style="position: absolute; top: 150px;right: 100px;width: 500px;height: 200px; color: #f44336; text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black; ">According to your requirements the fuel price predicted - </h1>
+<h1 style="position: absolute; top: 150px;right: 100px;width: 500px;height: 200px; color: #f44336; text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;visibility : {{ visible }}">
+    According to your requirements the fuel price predicted - </h1>
 
-    <div class="absolute" style="border-radius: 25px">
-        <table style="width: 100%; height: 100%;">
+<div class="absolute" style="border-radius: 25px; visibility: {{ visible }}">
+    <table style="width: 100%; height: 100%;">
 
-            <tr>
-                <td>Price for 1 Gallon</td>
-                <td> = </td>
-                <td> 2.00 $</td>
-            </tr>
-            <tr>
-                <td>Total Amount Due</td>
-                <td> = </td>
-                <td> 20.00 $</td>
-            </tr>
-            
+        <tr>
+            <td>Price for 1 Gallon</td>
+            <td> =</td>
+            <td> {{ price }} $</td>
+        </tr>
+        <tr>
+            <td>Total Amount Due</td>
+            <td> =</td>
+            <td> {{ amount }} $</td>
+        </tr>
 
-        </table>
 
-        
-    </div>
+    </table>
 
+
+</div>
 
 
 </body>

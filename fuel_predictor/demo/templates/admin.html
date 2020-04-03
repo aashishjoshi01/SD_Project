@@ -46,12 +46,32 @@ color: white;
 
 .bg-image {
 
-  background-image: url('gas.jpg');
+  background-image: url('/static/demo/gas.jpg');
   Background-size: 100%;
   height: 100%; 
   background-position: center;
   background-repeat: no-repeat;
 }
+
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: red;
+}
+
 
 .menu{
     background-color: rgb(57, 66, 75);
@@ -66,21 +86,22 @@ color: white;
 }
 
 
-</style>
+
+    </style>
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <body class="bg-image">
 
-    <div class="menu">
-        <table style="width: 100%; height: 100%; color: whitesmoke;">
-            <tr>
-                <td style="width:33%;text-align: center;">Fuel Quote Predictor</td>
-                <td style="width:33%; text-align: center;">Fuel History</td>
-                <td style="width:33%; text-align: center;">Profile</td>
-            </tr>
-        </table>
-    </div>
+<div class="menu">
+    <table style="width: 100%; height: 100%; color: whitesmoke;">
+        <tr>
+            <td style="width:33%;text-align: center;"><a href="fuel_quote">Fuel Quote Predictor</a></td>
+            <td style="width:33%; text-align: center;"><a href="fuel_hist">Fuel History</a></td>
+            <td style="width:33%; text-align: center;"><a href="client_profile">Profile</a></td>
+        </tr>
+    </table>
+</div>
 
 <br><br>
 <div class="center" style="font-size: 32px;">Welcome Admin</div>
@@ -88,21 +109,25 @@ color: white;
 
 <div class="center1" style="border-radius: 25px">
 
-    
-    <br><br>
-    <span class="center2" style="font-size:22px">Seasonal Rate Fluctuation&nbsp &nbsp<input type="text" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
-    <p></p><br>
-    <span class="center2" style="font-size:22px" >Base Price&nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp<input type="text" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
-    <p></p>
-    <br>
-<span class="center2" style="font-size:22px" >Profit Margin &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp<input type="text" input="0" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
-  <p></p>
-    <br>
+    <form method="post">
+        {% csrf_token %}
+        <br><br>
+        <span class="center2" style="font-size:22px">Seasonal Rate Fluctuation&nbsp &nbsp
+            <input type="text" value="{{ srf }}" required name="srf" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+        <p></p><br>
+        <span class="center2" style="font-size:22px">Base Price&nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp
+            <input required  value="{{ baseprice }}" name="baseprice" type="text" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+        <p></p>
+        <br>
+        <span class="center2" style="font-size:22px">Profit Margin &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp
+            <input value="{{ profit }}" required name="profit" type="text" input="0" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+        <p></p>
+        <br>
 
-
-
-<br><br>
-    <input type="submit" value="Update" class="button">
+        <p style="color:red"> {{ message }}</p>
+        <br><br>
+        <input type="submit" value="Update" class="button">
+    </form>
 </div>
 </body>
 </html>

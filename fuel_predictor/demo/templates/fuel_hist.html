@@ -1,7 +1,7 @@
 <html>
 <head>
 
-<style>
+    <style>
 
 * {
   font-family: "Comic Sans MS", cursive, sans-serif
@@ -16,10 +16,29 @@
 
 .bg-image{
 
-    background-image: url('gas.jpg');
+    background-image: url('/static/demo/gas.jpg');
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: red;
 }
 
 .menu{
@@ -77,79 +96,47 @@ th.tab, td.tab {
     width:20%;text-align: center;
 }
 
-</style>
+
+    </style>
 
 </head>
 
 <body class="bg-image" style="background-size: 100% 100%; font-family: 'Comic Sans MS', cursive, sans-serif">
 
-    <div class="menu">
-        <table style="width: 100%; height: 100%; color: whitesmoke;">
+<div class="menu">
+    <table style="width: 100%; height: 100%; color: whitesmoke;">
         <tr>
-            <td style="width:33%;text-align: center;">Fuel Quote Predictor</td>
-            <td style="width:33%; text-align: center;">Fuel History</td>
-            <td style="width:33%; text-align: center;">Profile</td>
+            <td style="width:33%;text-align: center;"><a href="fuel_quote">Fuel Quote Predictor</a></td>
+            <td style="width:33%; text-align: center;"><a href="fuel_hist">Fuel History</a></td>
+            <td style="width:33%; text-align: center;"><a href="client_profile">Profile</a></td>
         </tr>
     </table>
-    </div>
+</div>
 
-    <h1 class="center">According to your requirements the fuel price predicted - </h1>
+<h1 class="center">According to your requirements the fuel price predicted - </h1>
 
-    <div class="center1" style="border-radius: 25px">
-        <table style="width: 100%; height: 80%;margin: 12px;">
+<div class="center1" style="border-radius: 25px">
+    <table style="width: 100%; height: 80%;margin: 12px;">
+        <tr class="tab">
+            <th class="tab" style="color: red;font-size: 24px;">Gallons Requested</th>
+            <th class="tab" style="color: red;font-size: 24px;">Delivery Address</th>
+            <th class="tab" style="color: red;font-size: 24px;">Delivery Date</th>
+            <th class="tab" style="color: red;font-size: 24px;">Suggested Price</th>
+            <th class="tab" style="color: red;font-size: 24px;">Total Amount Due</th>
+        </tr>
 
-            <tr class="tab">
-                <th class="tab" style="color: red;font-size: 24px;">Gallons Requested</th>
-                <th class="tab" style="color: red;font-size: 24px;">Delivery Address</th>
-                <th class="tab" style="color: red;font-size: 24px;">Delivery Date</th>
-                <th class="tab" style="color: red;font-size: 24px;">Suggested Price</th>
-                <th class="tab" style="color: red;font-size: 24px;">Total Amount Due</th>
-            </tr>
-            <tr class="tab">
-                <td class="tab">12</td>
-                <td class="tab">Texas</td>
-                <td class="tab">01/02/2020</td>
-                <td class="tab">3.25</td>
-                <td class="tab">39</td>
- 
-            </tr>
+        {% for row in rows %}
+        <tr class="tab">
+            {% for data in row %}
+            <td class="tab">{{ data }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
 
-            <tr class="tab">
-                <td class="tab">19</td>
-                <td class="tab">California</td>
-                <td class="tab">02/18/2020</td>
-                <td class="tab">3.3</td>
-                <td class="tab">62.7</td>
-            </tr>
 
-            <tr class="tab">
-                <td class="tab">17</td>
-                <td class="tab">Texas</td>
-                <td class="tab">02/28/2020</td>
-                <td class="tab">2.9</td>
-                <td class="tab">49.3</td>
-            </tr>
+    </table>
 
-            <tr class="tab">
-                <td class="tab">10</td>
-                <td class="tab">Florida</td>
-                <td class="tab">03/06/2020</td>
-                <td class="tab">3.5</td>
-                <td class="tab">35</td>
-            </tr>
-
-            <tr class="tab">
-                <td class="tab">16</td>
-                <td class="tab">Texas</td>
-                <td class="tab">03/07/2020</td>
-                <td class="tab">3.2</td>
-                <td class="tab">51.2</td>
-            </tr>
-
-        </table>
-        
-    </div>
-
+</div>
 
 
 </body>

@@ -7,6 +7,26 @@
 * {
   font-family: "Comic Sans MS", cursive, sans-serif
 }
+
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: red;
+}
+
 .center {
   text-align: center;
   font-size: 40px;
@@ -54,14 +74,14 @@
 
 .bg-image {
 
-  background-image: url('gas.jpg');
+  background-image: url('/static/demo/gas.jpg');
   Background-size: 100%;
   height: 100%;   
   background-position: center;
   background-repeat: no-repeat;
 }
 
-</style>
+    </style>
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -71,17 +91,23 @@
 
 
 <div class="center1" style="border-radius: 25px; background-color: solid white">
-
-    <h1><font color="red">Create a new Account</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h1><font color="red">Create a new Account</h1>
+        <br><br>
+        <span class="center2" style="font-size:22px"><font color="white">Username </font>&nbsp &nbsp<input type="text" required
+                                                                                                           name="username"
+                                                                                                           value="{{ uname }}"
+                                                                                                           style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+        <p></p><br>
+        <span class="center2" style="font-size:22px"><font color="white">Password &nbsp &nbsp<input type="password" required
+                                                                                                    name="password"
+                                                                                                    style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
+        <p style="color: red">{{ message }}</p>
+        <br><br>
+        <input type="submit" value="Sign In" class="button"></form>
     <br><br>
-    <span class="center2" style="font-size:22px"><font color="white">Username </font>&nbsp &nbsp<input type="text" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
-    <p></p><br>
-    <span class="center2" style="font-size:22px"><font color="white">Password &nbsp &nbsp<input type="password" style="border: 1px solid rgb(0, 0, 255, 0.4)"></span>
-    <p></p>
-    <br><br>
-    <input type="submit" value="Login" class="button">
-    <br><br>
-    <span class="center2">Already have an account ? <font style="text-decoration: underline;">Sign in</font></span>
+    <span class="center2">Already have an account ? <a href="login">Sign in</a></span>
 </div>
 
 
