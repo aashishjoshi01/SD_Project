@@ -50,7 +50,6 @@ a:active {
     top: 0px;
     right: 0;
     width: 100%;
-    height: 50px;
 }
 
 .center1 {
@@ -106,14 +105,15 @@ th.tab, td.tab {
 <div class="menu">
     <table style="width: 100%; height: 100%; color: whitesmoke;">
         <tr>
-            <td style="width:33%;text-align: center;"><a href="fuel_quote">Fuel Quote Predictor</a></td>
-            <td style="width:33%; text-align: center;"><a href="fuel_hist">Fuel History</a></td>
-            <td style="width:33%; text-align: center;"><a href="client_profile">Profile</a></td>
+            <td style="width:25%;text-align: center;"><a href="fuel_quote">Fuel Quote Predictor</a></td>
+            <td style="width:25%; text-align: center;"><a href="fuel_hist">Fuel History</a></td>
+            <td style="width:25%; text-align: center;"><a href="client_profile">Profile</a></td>
+            <td style="width:25%; text-align: center;"><a href="logout">Logout</a></td>
         </tr>
     </table>
 </div>
-
-<h1 class="center">According to your requirements the fuel price predicted - </h1>
+<br>
+<h1 class="center">Fuel History </h1>
 
 <div class="center1" style="border-radius: 25px">
     <table style="width: 100%; height: 80%;margin: 12px;">
@@ -124,6 +124,11 @@ th.tab, td.tab {
             <th class="tab" style="color: red;font-size: 24px;">Suggested Price</th>
             <th class="tab" style="color: red;font-size: 24px;">Total Amount Due</th>
         </tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
 
         {% for row in rows %}
         <tr class="tab">
@@ -131,6 +136,7 @@ th.tab, td.tab {
             <td class="tab">{{ data }}</td>
             {% endfor %}
         </tr>
+        <tr><td></td></tr>
         {% endfor %}
 
 

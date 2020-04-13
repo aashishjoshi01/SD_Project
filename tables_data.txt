@@ -1,0 +1,65 @@
+Users - 
+
+	Username
+	Password
+	access
+	flag
+
+﻿CREATE TABLE users (
+    username VARCHAR (30) PRIMARY KEY,
+    password VARCHAR (30) NOT NULL,
+    access   VARCHAR (10) NOT NULL,
+    flag     INT          DEFAULT (0) 
+);	
+	
+
+
+Profile - 
+	username
+	Full name
+	Address1
+	Address2
+	City
+	State
+	ZipCode
+	
+	﻿CREATE TABLE profile (
+    username VARCHAR (30)  REFERENCES users (username),
+    fullname VARCHAR (50),
+    address1 VARCHAR (100),
+    address2 VARCHAR (100),
+    city     VARCHAR (100),
+    state    VARCHAR (5),
+    zipcode  VARCHAR (9) 
+);
+
+
+fuelquote
+	username
+	gallons
+	address
+	date
+	price
+	amount
+	
+	﻿CREATE TABLE fuelquote (
+    username VARCHAR (30)  REFERENCES users (username),
+    gallons  INTEGER,
+    address  VARCHAR (200),
+    date     DATE,
+    price    INTEGER,
+    amount   INTEGER
+);
+	
+Admin - 
+	Seasonal rate fluctuation
+	Base Price
+	Profit Margin
+	
+	
+	
+	﻿CREATE TABLE admin (
+    srf       INTEGER,
+    baseprice INTEGER,
+    profit    INTEGER
+);
