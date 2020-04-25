@@ -5,6 +5,8 @@ from datetime import date
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+path = r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db'
+
 
 # Create your views here.
 
@@ -13,7 +15,7 @@ def check_login(request):
         username = request.COOKIES['username']
         password = request.COOKIES['password']
 
-        conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+        conn = sqlite3.connect(path)
 
         cur = conn.cursor()
 
@@ -36,7 +38,7 @@ def check_login(request):
 def check_admin(request):
     username = request.COOKIES['username']
 
-    conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+    conn = sqlite3.connect(path)
     cur = conn.cursor()
 
     cur.execute("select * from login where username = ?", (username,))
@@ -57,7 +59,7 @@ def login(request):
         password = data.get('password')
         hash_pwd = hashlib.md5(password.encode('utf-8')).hexdigest()
 
-        conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+        conn = sqlite3.connect(path)
 
         cur = conn.cursor()
 
@@ -97,7 +99,7 @@ def signup(request):
         hash_pwd = hashlib.md5(pwd.encode('utf-8')).hexdigest()
         flag = 0
 
-        conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+        conn = sqlite3.connect(path)
         cur = conn.cursor()
 
         cur.execute("select * from login")
@@ -128,7 +130,7 @@ def signup(request):
                             message = 'Password must contain at least 8 characters'
                             return render(request, 'signup.html', {'message': message, 'uname': uname})
                     else:
-                        message = 'Username must contain atleast 8 characters'
+                        message = 'Username must contain at least 8 characters'
                         return render(request, 'signup.html', {'message': message, 'uname': uname})
                 else:
                     message = 'Password must contain both uppercase and lowercase alphabets'
@@ -166,7 +168,7 @@ def admin(request):
                 try:
                     float(profit)
 
-                    conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+                    conn = sqlite3.connect(path)
                     cur = conn.cursor()
 
                     cur.execute("update admin set srf = ?, baseprice = ?, profit = ?", (srf, baseprice, profit))
@@ -195,7 +197,7 @@ def admin(request):
             if not check_admin(request):
                 return HttpResponseRedirect('fuel_quote')
 
-            conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+            conn = sqlite3.connect(path)
             cur = conn.cursor()
 
             cur.execute("select * from admin")
@@ -238,7 +240,7 @@ def client_profile(request):
                 if len(state) != 0:
                     if str.isnumeric(zipcode):
 
-                        conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+                        conn = sqlite3.connect(path)
                         cur = conn.cursor()
 
                         cur.execute("select * from profile")
@@ -284,12 +286,12 @@ def client_profile(request):
             return render(request, 'client_profile.html',
                           {'message': message, 'fname': fname, 'addr1': addr1, 'addr2': addr2, 'city': city,
                            'state': state, 'zipcode': zipcode})
-
+    # GET
     else:
         if check_login(request):
             username = request.COOKIES['username']
 
-            conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+            conn = sqlite3.connect(path)
 
             cur = conn.cursor()
 
@@ -343,7 +345,7 @@ def fuel_quote(request):
                     else:
                         gallons_requested_factor = 3
 
-                    conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+                    conn = sqlite3.connect(path)
 
                     cur = conn.cursor()
 
@@ -392,8 +394,9 @@ def fuel_quote(request):
                                    'visible': 'hidden'})
             else:
                 message = 'Address field cannot be empty'
-                return render(request, 'fuel_quote.html',
-                              {'message': message, 'gallons': gallons, 'address': address, 'date': deliveryDate})
+                return render(request, 'client_profile.html', {'message': message})
+                # return render(request, 'fuel_quote.html',
+                #               {'message': message, 'gallons': gallons, 'address': address, 'date': deliveryDate})
         except ValueError:
             message = 'Gallons must be an integer'
             return render(request, 'fuel_quote.html',
@@ -416,17 +419,14 @@ def fuel_quote(request):
         base = base.split(" ")[1]
         amount = amount.split(" ")[1]
 
-        conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
-
+        conn = sqlite3.connect(path)
         cur = conn.cursor()
 
         username = request.COOKIES['username']
-
         cur.execute("insert into fuelquote values(?,?,?,?,?,?)",
                     (username, gallons, address, deliveryDate, base, amount))
 
         conn.commit()
-
         conn.close()
 
         return HttpResponseRedirect('fuel_hist')
@@ -436,7 +436,7 @@ def fuel_quote(request):
 
             username = request.COOKIES['username']
 
-            conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+            conn = sqlite3.connect(path)
             cur = conn.cursor()
 
             cur.execute("select * from profile")
@@ -458,7 +458,7 @@ def fuel_hist(request):
 
     username = request.COOKIES['username']
 
-    conn = sqlite3.connect(r'/Users/praneethpragada/PycharmProjects/software_design/fuel.db')
+    conn = sqlite3.connect(path)
     cur = conn.cursor()
 
     cur.execute("select * from fuelquote where username = ?", (username,))
